@@ -711,7 +711,7 @@ body.is-menu-open {
   color: var(--color-primary);
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1599px) {
   .hero {
     gap: 4vw;
     padding: 0 3vw 0 0;
