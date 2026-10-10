@@ -198,6 +198,7 @@ h5 {
   align-items: center;
   gap: 8px;
   margin-left: auto;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
@@ -710,22 +711,22 @@ body.is-menu-open {
   color: var(--color-primary);
 }
 
-@media (max-width: 1365px) {
+@media (max-width: 1439px) {
   .hero {
-    gap: 5vw;
-    padding-left: 0;
+    gap: 4vw;
+    padding: 0 3vw 0 0;
   }
 
   .hero__content {
-    width: 42vw;
+    width: 40vw;
   }
 
   .hero__title {
-    font-size: 7.3vw;
+    font-size: 6.9vw;
   }
 
   .hero__subtitle {
-    font-size: 1.83vw;
+    font-size: 1.7vw;
     line-height: 1.36;
   }
 
@@ -858,12 +859,14 @@ body.is-menu-open {
 
 /* Em telas onde a seta ficaria fora da tela, ela entra sobre o card */
 @media (max-width: 1365px) {
-  .showcase__arrow--prev {
-    left: -19px;
+  .showcase__arrow--prev,
+  .showcase--secondary .showcase__arrow--prev {
+    left: -16px;
   }
 
-  .showcase__arrow--next {
-    right: -19px;
+  .showcase__arrow--next,
+  .showcase--secondary .showcase__arrow--next {
+    right: -16px;
   }
 }
 
@@ -1236,7 +1239,7 @@ body.is-menu-open {
   .feature--second {
     gap: 47px;
     margin-top: 56px;
-    margin-bottom: 39px;
+    margin-bottom: 43px;
   }
 
   .feature__image {
@@ -1559,7 +1562,7 @@ body.is-menu-open {
 
 .footer__bottom {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 17px;
 }
 
 .footer__legal {
@@ -1594,6 +1597,27 @@ body.is-menu-open {
   }
 }
 
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .newsletter__form {
+    flex-wrap: wrap;
+    padding: 40px 24px;
+  }
+
+  .newsletter__input {
+    flex: 1 1 220px;
+  }
+
+  .footer__inner {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 767px) {
   .newsletter {
@@ -1615,6 +1639,7 @@ body.is-menu-open {
   }
 
   .newsletter__input {
+    flex: none;
     width: 100%;
   }
 
@@ -1696,5 +1721,13 @@ body.is-menu-open {
 
   .footer__seals {
     margin-top: 31px;
+  }
+}
+
+/* ---------- Telas muito estreitas ---------- */
+@media (max-width: 374px) {
+  .newsletter__consent {
+    margin-left: 0;
+    white-space: normal;
   }
 }
