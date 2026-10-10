@@ -148,7 +148,39 @@ function initShowcaseCarousels() {
   mobileQuery.addEventListener('change', build);
 }
 
+/**
+ * Newsletter: usa a validação nativa do formulário e confirma o
+ * cadastro sem recarregar a página.
+ */
+function initNewsletter() {
+  const form = document.querySelector('.newsletter__form');
+  const feedback = document.getElementById('newsletter-feedback');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    feedback.textContent = 'Cadastro realizado com sucesso!';
+    form.reset();
+  });
+}
+
+/**
+ * Footer no mobile: cada coluna vira um accordion.
+ */
+function initFooterAccordion() {
+  document.querySelectorAll('.footer__toggle').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      if (!mobileQuery.matches) return;
+
+      const column = toggle.closest('.footer__column');
+      const isOpen = column.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+}
+
 initSearch();
+initNewsletter();
+initFooterAccordion();
 initMegaMenu();
 initMobileMenu();
 initShowcaseCarousels();
