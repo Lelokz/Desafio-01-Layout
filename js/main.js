@@ -88,24 +88,67 @@ function initMobileMenu() {
   });
 }
 
+const mobileQuery = window.matchMedia('(max-width: 767px)');
+
 /**
- * Preenche cada carrossel de produtos com cópias do card definido
- * no <template id="product-card-template">.
+ * Preenche o carrossel com cópias do card definido no
+ * <template id="product-card-template">. O mobile usa menos produtos
+ * para manter as 3 páginas do layout (2 cards por página).
  */
-function renderProductCards() {
+function renderProductCards(carousel) {
   const template = document.getElementById('product-card-template');
+  const wrapper = carousel.querySelector('.swiper-wrapper');
+  const { products, productsMobile } = carousel.dataset;
+  const total = Number(mobileQuery.matches ? productsMobile : products) || 0;
 
-  document.querySelectorAll('.showcase__swiper').forEach((carousel) => {
-    const wrapper = carousel.querySelector('.swiper-wrapper');
-    const total = Number(carousel.dataset.products) || 0;
+  wrapper.replaceChildren();
+  for (let i = 0; i < total; i++) {
+    wrapper.appendChild(template.content.cloneNode(true));
+  }
+}
 
-    for (let i = 0; i < total; i++) {
-      wrapper.appendChild(template.content.cloneNode(true));
-    }
-  });
+/**
+ * Carrosséis de produtos: 5 cards por página no desktop e 2 no mobile,
+ * com setas e paginação.
+ */
+function initShowcaseCarousels() {
+  const showcases = [...document.querySelectorAll('.showcase')];
+  let instances = [];
+
+  const build = () => {
+    instances.forEach((swiper) => swiper.destroy(true, true));
+
+    instances = showcases.map((showcase) => {
+      const carousel = showcase.querySelector('.showcase__swiper');
+      renderProductCards(carousel);
+
+      return new Swiper(carousel, {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 10,
+        rewind: true,
+        navigation: {
+          prevEl: showcase.querySelector('.showcase__arrow--prev'),
+          nextEl: showcase.querySelector('.showcase__arrow--next'),
+        },
+        pagination: {
+          el: showcase.querySelector('.showcase__pagination'),
+          clickable: true,
+        },
+        breakpoints: {
+          768: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 17 },
+          1024: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 17 },
+          1280: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 17 },
+        },
+      });
+    });
+  };
+
+  build();
+  mobileQuery.addEventListener('change', build);
 }
 
 initSearch();
 initMegaMenu();
 initMobileMenu();
-renderProductCards();
+initShowcaseCarousels();
