@@ -121,17 +121,16 @@ h5 {
   border: 0;
 }
 
-.only-mobile {
-  display: none;
+/* Conteúdo exclusivo de cada versão do layout (desktop ≥ 768px) */
+@media (min-width: 768px) {
+  .only-mobile {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {
   .only-desktop {
-    display: none;
-  }
-
-  .only-mobile {
-    display: revert;
+    display: none !important;
   }
 }
 
@@ -1044,5 +1043,290 @@ body.is-menu-open {
   .product-card__discount {
     margin-top: 0;
     text-decoration: none;
+  }
+}
+
+/* ==========================================================================
+   Destaques (caneca + texto)
+   ========================================================================== */
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 37px;
+  max-width: calc(1176px + var(--gutter) * 2);
+  margin-bottom: 78px;
+}
+
+.feature--second {
+  margin-top: 67px;
+  margin-bottom: 0;
+}
+
+.feature__image {
+  flex: 0 1 652px;
+  padding: 78px 32px 77px;
+  background-color: var(--color-gray-400);
+}
+
+.feature__image img {
+  width: 100%;
+  height: auto;
+}
+
+.feature__text {
+  flex: 0 1 487px;
+  font-family: var(--font-display);
+  color: var(--color-black);
+}
+
+.feature__text > div {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.feature__title {
+  margin-bottom: 22px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.feature__text p {
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Benefícios (fundo cinza com ícones)
+   ========================================================================== */
+.benefits {
+  padding: 62px 0 29px;
+  background-color: var(--color-gray-300);
+}
+
+.benefits__inner {
+  display: flex;
+  align-items: center;
+  gap: 49px;
+  max-width: calc(1177px + var(--gutter) * 2);
+}
+
+.benefits__content {
+  flex: 0 1 476px;
+}
+
+.benefits__title {
+  margin-bottom: 50px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.benefits__list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.benefits__item {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+
+.benefits__icon {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+}
+
+.benefits__item p {
+  max-width: 360px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.benefits__image {
+  flex: 0 1 652px;
+}
+
+.benefits__image img {
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Contato
+   ========================================================================== */
+.contact {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  height: 660px;
+  overflow: hidden;
+}
+
+.contact__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+  /* Amplia levemente para o desfoque não clarear as bordas */
+  transform: scale(1.02);
+}
+
+.contact__text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 132px;
+  margin-top: 264px;
+  padding: 0 var(--gutter);
+  background-color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-white);
+}
+
+/* ---------- Telas intermediárias ---------- */
+@media (max-width: 1199px) {
+  .feature__title,
+  .benefits__title {
+    font-size: 26px;
+  }
+
+  .feature__text p,
+  .benefits__item p {
+    font-size: 16px;
+  }
+
+  .contact__text {
+    font-size: 24px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .feature {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 38px;
+    margin-bottom: 55px;
+    padding: 0;
+  }
+
+  .feature--second {
+    gap: 47px;
+    margin-top: 56px;
+    margin-bottom: 39px;
+  }
+
+  .feature__image {
+    flex: none;
+    padding: 0;
+  }
+
+  .feature__image img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .feature__text {
+    flex: none;
+    padding: 0 22px;
+  }
+
+  .feature__text > div {
+    gap: 19.6px;
+  }
+
+  .feature__title {
+    margin-bottom: 18px;
+    font-size: 24px;
+  }
+
+  .feature__text p {
+    font-size: 14px;
+  }
+
+  .benefits {
+    padding: 28px 22px 28px 19px;
+  }
+
+  .benefits__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 21px;
+    padding: 0;
+  }
+
+  .benefits__image {
+    flex: none;
+    order: -1;
+  }
+
+  .benefits__content {
+    flex: none;
+  }
+
+  .benefits__title {
+    margin-bottom: 25px;
+    font-size: 20px;
+    color: var(--color-black);
+  }
+
+  /* No mobile o Figma aplica sombra ao grupo inteiro (ícones e textos) */
+  .benefits__list {
+    gap: 19px;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .benefits__item {
+    gap: 14px;
+  }
+
+  .benefits__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .benefits__item p {
+    max-width: 276px;
+    font-size: 12px;
+    color: var(--color-black);
+  }
+
+  .contact {
+    height: 449px;
+  }
+
+  .contact__image {
+    filter: blur(1px);
+  }
+
+  .contact__text {
+    min-height: 75px;
+    margin-top: 193px;
+    padding: 0 2px;
+    font-size: 16px;
+    font-weight: 600;
   }
 }
